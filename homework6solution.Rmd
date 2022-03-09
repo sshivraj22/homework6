@@ -1,0 +1,34 @@
+---
+title: "homework6solution"
+author: "Sundar Shivraj"
+date: "3/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## R Markdown
+Homework 6 Solutions:
+Part1:
+- Question 1
+```{r}
+library(tidyverse)
+happy = readRDS("data/HAPPY.rds")
+str(happy)
+happy = replace(happy, happy == "IAP", NA)
+happy = replace(happy, happy == "DK", NA)
+happy = replace(happy, happy == "NA", NA)
+head(happy)
+```
+- Question 2 / Question 3
+```{r}
+happy1 = 
+  happy %>% mutate(AGE = replace(AGE, AGE == "89 OR    OLDER", 89)) %>% mutate(AGE = as.numeric(AGE),
+  HAPPY = as.factor(HAPPY),
+  SEX = as.factor(SEX),
+  MARITAL = as.factor(MARITAL),
+  DEGREE = as.factor(DEGREE)) %>% 
+mutate(DEGREE = factor(DEGREE, levels = c("LT HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE","BACHELOR","GRADUATE")))
+```
+

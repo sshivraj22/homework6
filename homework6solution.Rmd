@@ -24,11 +24,18 @@ head(happy)
 - Question 2 / Question 3
 ```{r}
 happy1 = 
-  happy %>% mutate(AGE = replace(AGE, AGE == "89 OR    OLDER", 89)) %>% mutate(AGE = as.numeric(AGE),
+  happy %>% mutate(AGE = replace(AGE, AGE == "89 OR OLDER", 89)) %>% mutate(AGE = as.numeric(AGE),
   HAPPY = as.factor(HAPPY),
   SEX = as.factor(SEX),
   MARITAL = as.factor(MARITAL),
   DEGREE = as.factor(DEGREE)) %>% 
 mutate(DEGREE = factor(DEGREE, levels = c("LT HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE","BACHELOR","GRADUATE")))
+saveRDS(happy, "HAPPY.rds")
+```
+Part 2:
+```{r}
+ggplot(happy1, aes(x = AGE, y = HAPPY, color = as.factor(MARITAL))) +
+  geom_point()
 ```
 
+This graph compares the happiness of individuals depending on their age and their marital status. From this graph, we can see a fair number of trends in the data. For example, we can see that most young never married individuals are not too happy. Most middle aged divorced people are pretty happy. Most younger and middle aged married people are very happy. These are some of the common trends we can see from the visualization of the data.
